@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 
 import "./Modal.scss";
 
-const FormModal = ({ children, modalIsOpen, handleClose }) => {
+const FormModal = ({ modalIsOpen, handleClose }) => {
   return (
     <>
       <Modal

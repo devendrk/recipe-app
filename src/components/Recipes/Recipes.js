@@ -3,11 +3,10 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
-import { showModal, hideModal } from "../../Redux/reducers/modalReducer";
+import { showModal } from "../../Redux/reducers/modalReducer";
 
 import Card from "../Card/Card";
 import Button from "../Button/Button";
-import Modal from "../Modal/Modal";
 
 const Recipes = () => {
   const dispatch = useDispatch();
@@ -27,12 +26,7 @@ const Recipes = () => {
         variant="primary"
         handleClick={() => dispatch(showModal())}
       />
-      <Modal
-        modalIsOpen={state.modal.modalOpen}
-        handleClose={() => dispatch(hideModal())}
-      />
-
-      {state.recipes.map((r) => (
+      {state.recipes.recipes.map((r) => (
         <Card
           routeTo={routeTo}
           key={r._id}

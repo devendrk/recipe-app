@@ -1,7 +1,11 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { addRecipes } from "../../Redux/reducers/recipeReducer";
+import {
+  addRecipes,
+  editRecipes,
+  setActiveRecipe,
+} from "../../Redux/reducers/recipeReducer";
 import { hideModal } from "../../Redux/reducers/modalReducer";
 import Button from "../Button/Button";
 
@@ -14,12 +18,22 @@ const Form = () => {
     rating: 0,
     image: "",
   });
+  useEffect(() => {
+    if (activeRecipe) {
+      setRecipe(activeRecipe);
+    }
+  }, []);
 
   const dispatch = useDispatch();
-
+  const activeRecipe = useSelector((state) => state.recipes.activeRecipe);
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addRecipes(recipe));
+    if (activeRecipe) {
+      dispatch(editRecipes(activeRecipe._id, recipe));
+    } else {
+      dispatch(addRecipes(recipe));
+    }
+
     setRecipe({
       name: "",
       description: "",
@@ -27,6 +41,7 @@ const Form = () => {
       image: "",
     });
     dispatch(hideModal());
+    dispatch(setActiveRecipe(null));
   };
 
   const handleChange = (e) => {

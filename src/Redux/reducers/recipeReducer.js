@@ -1,15 +1,21 @@
 import recipeService from "../../services/recipes";
 
-const recipeReducer = (state = [], action) => {
+const initialState = { recipes: [], activeRecipe: null };
+const recipeReducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_RECIPES":
-      return action.payload;
+      return { ...state, recipes: action.payload };
     case "CREATE_RECIPES":
-      return [...state, action.payload];
+      return { ...state, recipes: [...state.recipes, action.payload] };
+    case "SET_ACTIVE_RECIPE":
+      return { ...state, activeRecipe: action.payload };
     case "EDIT_RECIPES":
-      return action.payload;
+      const updatedRecipe = state.recipes.map((r) =>
+        r.id === action.payload.id ? action.payload.id : r
+      );
+      return { ...state, recipes: updatedRecipe };
     case "DELETE_RECIPES":
-      return action.payload;
+      return { ...state, recipes: action.payload };
 
     default:
       return state;
@@ -42,7 +48,7 @@ export const editRecipes = (id, updatedRecipe) => {
   return async (dispatch) => {
     const recipes = await recipeService.update(id, updatedRecipe);
     dispatch({
-      type: "EDIT_RECIPESEdi",
+      type: "EDIT_RECIPESE",
       payload: recipes,
     });
   };
@@ -56,4 +62,12 @@ export const deleteRecipies = (id) => {
     });
   };
 };
+
+export const setActiveRecipe = (recipe) => {
+  return {
+    type: "SET_ACTIVE_RECIPE",
+    payload: recipe,
+  };
+};
+
 export default recipeReducer;
