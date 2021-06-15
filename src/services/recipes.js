@@ -7,4 +7,9 @@ const getAll = async () => {
   return res.data;
 };
 
-export default { getAll };
+const createNewRecipe = async (recepieObj) => {
+  const response = await axios.post(baseUrl, recepieObj);
+  return response.data;
+};
+
+export default { getAll, createNewRecipe };

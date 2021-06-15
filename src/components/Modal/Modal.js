@@ -1,40 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import Modal from "react-modal";
+
+import Form from "../Form/Form";
 import Button from "../Button/Button";
 
 import "./Modal.scss";
 
-const FormModal = ({ children }) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
+const FormModal = ({ children, modalIsOpen, handleClose }) => {
   return (
     <>
-      {!modalIsOpen ? (
-        <Button
-          handleClick={() => setModalIsOpen(true)}
-          text="add new recipe"
-          variant="secondary"
-        />
-      ) : (
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={() => setModalIsOpen(false)}
-          className="modal"
-        >
-          <div className="modal__header">
-            <div></div>
-            <h5 className="modal__title">Add new recipe</h5>
-            <div className="modal__closebtn">
-              <Button
-                handleClick={() => setModalIsOpen(false)}
-                text="close"
-                variant="danger"
-              />
-            </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => handleClose(false)}
+        className="modal"
+        ariaHideApp={false}
+      >
+        <div className="modal__header">
+          <div></div>
+          <h5 className="modal__title">Add new recipe</h5>
+          <div className="modal__closebtn">
+            <Button
+              handleClick={() => handleClose(false)}
+              text="close"
+              variant="danger"
+            />
           </div>
-          {children}
-        </Modal>
-      )}
+        </div>
+        <Form />
+      </Modal>
     </>
   );
 };

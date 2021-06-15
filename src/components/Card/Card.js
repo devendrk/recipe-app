@@ -3,9 +3,16 @@ import { FaStar } from "react-icons/fa";
 
 import "./Card.scss";
 
-const Card = ({ cardTitle, recipeRating, imgSrc, handleClick }) => {
+const Card = ({
+  cardTitle,
+  recipeRating,
+  imgSrc,
+  handleClick,
+  routeTo,
+  id,
+}) => {
   return (
-    <div className="card" onClick={handleClick} role="presentation">
+    <div className="card" onClick={() => routeTo(id)} role="presentation">
       <div className="card__media">
         <img src={imgSrc} alt="Title Card" />
       </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Search from "../SearchForm/SearchForm";
 
 import "./Navbar.scss";
@@ -6,9 +7,9 @@ import "./Navbar.scss";
 const Navbar = ({ handleSearch, searchVal }) => {
   return (
     <div className="navbar">
-      <a className="navbar__homeLink" href="#home">
+      <Link className="navbar__homeLink" to="/">
         TasteBuddy
-      </a>
+      </Link>
       <div className="navar__search">
         <Search handleSearch={handleSearch} searchVal={searchVal} />
       </div>
