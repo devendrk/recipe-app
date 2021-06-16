@@ -4,7 +4,11 @@ import "./Button.scss";
 
 const Button = ({ variant, text, handleClick }) => {
   return (
-    <button className={`btn btn__${variant}`} onClick={handleClick}>
+    <button
+      data-testid="button"
+      className={`btn btn__${variant}`}
+      onClick={handleClick}
+    >
       {text}
     </button>
   );

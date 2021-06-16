@@ -36,7 +36,7 @@ const Recipes = () => {
           <Card
             routeTo={routeTo}
             key={r._id}
-            recipeRating={1}
+            recipeRating={r.rating}
             cardTitle={r.name}
             cardText={r.description}
             imgSrc={r.image}
