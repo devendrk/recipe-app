@@ -12,4 +12,13 @@ const createNewRecipe = async (recepieObj) => {
   return response.data;
 };
 
-export default { getAll, createNewRecipe };
+const updateReceipe = async (id, receipe) => {
+  const response = await axios.put(`${baseUrl}/${id}`, receipe);
+  return response.data;
+};
+
+const deleteReceipe = async (id) => {
+  await axios.delete(`${baseUrl}/${id}`);
+};
+
+export default { getAll, createNewRecipe, updateReceipe, deleteReceipe };

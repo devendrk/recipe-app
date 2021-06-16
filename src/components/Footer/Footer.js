@@ -22,9 +22,7 @@ const Footer = () => {
               size={20}
               className="footer_icon"
             />
-            <p className="footer__text footer__text--small">
-              Markkinakatu 23 b 00700 Helsinki
-            </p>
+            <p className="footer__text footer__text--small">Louhela Vantaa</p>
           </div>
           <div className="footer__info-div">
             <FaPhoneAlt color="#fda084" size={20} className="footer_icon" />

@@ -9,13 +9,18 @@ const recipeReducer = (state = initialState, action) => {
       return { ...state, recipes: [...state.recipes, action.payload] };
     case "SET_ACTIVE_RECIPE":
       return { ...state, activeRecipe: action.payload };
-    case "EDIT_RECIPES":
+    case "EDIT_RECIPE":
       const updatedRecipe = state.recipes.map((r) =>
-        r.id === action.payload.id ? action.payload.id : r
+        r.id === action.payload.id ? action.payload.data : r
       );
       return { ...state, recipes: updatedRecipe };
-    case "DELETE_RECIPES":
-      return { ...state, recipes: action.payload };
+    case "DELETE_RECEIPE":
+      return {
+        ...state,
+        recipes: state.recipes.filter((r) => {
+          return r._id !== action.payload;
+        }),
+      };
 
     default:
       return state;
@@ -36,6 +41,7 @@ export const getRecipes = () => {
 export const addRecipes = (recipeObj) => {
   return async (dispatch) => {
     const recipes = await recipeService.createNewRecipe(recipeObj);
+    console.log("rr", recipes);
     dispatch({
       type: "CREATE_RECIPES",
       payload: recipes.data,
@@ -45,19 +51,19 @@ export const addRecipes = (recipeObj) => {
 
 export const editRecipes = (id, updatedRecipe) => {
   return async (dispatch) => {
-    const recipes = await recipeService.update(id, updatedRecipe);
+    const recipes = await recipeService.updateReceipe(id, updatedRecipe);
     dispatch({
-      type: "EDIT_RECIPESE",
+      type: "EDIT_RECIPE",
       payload: recipes,
     });
   };
 };
-export const deleteRecipies = (id) => {
+export const deleteReceipe = (id) => {
   return async (dispatch) => {
-    const recipes = await recipeService.delete(id);
+    await recipeService.deleteReceipe(id);
     dispatch({
-      type: "DELETE",
-      payload: recipes,
+      type: "DELETE_RECEIPE",
+      payload: id,
     });
   };
 };
