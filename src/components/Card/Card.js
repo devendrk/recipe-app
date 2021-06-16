@@ -1,16 +1,8 @@
 import React from "react";
-import { FaStar } from "react-icons/fa";
 
 import "./Card.scss";
 
-const Card = ({
-  cardTitle,
-  recipeRating,
-  imgSrc,
-  handleClick,
-  routeTo,
-  id,
-}) => {
+const Card = ({ cardTitle, recipeRating, imgSrc, routeTo, id }) => {
   return (
     <div className="card" onClick={() => routeTo(id)} role="presentation">
       <div className="card__media">
@@ -18,7 +10,7 @@ const Card = ({
       </div>
       <div className="card__footer">
         <p className="card__title">{cardTitle}</p>
-        <FaStar />
+        <p className="card__rating">{recipeRating}</p>
       </div>
     </div>
   );

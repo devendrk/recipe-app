@@ -10,7 +10,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Modal from "./components/Modal/Modal";
 import Footer from "./components/Footer/Footer";
 import SingleRecipe from "./components/SingeRecipe/SingeRecipie";
-// import "./App.scss";
+import "./App.scss";
 
 function App() {
   const dispatch = useDispatch();

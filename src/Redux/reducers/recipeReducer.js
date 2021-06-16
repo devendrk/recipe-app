@@ -36,7 +36,6 @@ export const getRecipes = () => {
 export const addRecipes = (recipeObj) => {
   return async (dispatch) => {
     const recipes = await recipeService.createNewRecipe(recipeObj);
-    console.log("rr", recipes);
     dispatch({
       type: "CREATE_RECIPES",
       payload: recipes.data,
