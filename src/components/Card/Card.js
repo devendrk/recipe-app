@@ -13,7 +13,7 @@ const Card = ({ cardTitle, recipeRating, imgSrc, routeTo, id }) => {
         <p className="card__title">{cardTitle}</p>
         <p className="card__rating">
           <FaStar />
-          <span>{recipeRating}</span>
+          <span> {recipeRating}</span>
         </p>
       </div>
     </div>

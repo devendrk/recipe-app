@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
 
 import {
   setActiveRecipe,
@@ -45,7 +46,10 @@ const SingleRecipe = () => {
             <img src={recipe.image} alt="Project" />
           </div>
           <h4 className="recipe__name">{recipe.name}</h4>
-          <div className="recipe__rating">{recipe.rating}</div>
+          <p className="recipe__rating">
+            <FaStar />
+            <span> {recipe.rating}</span>
+          </p>
           <div className="recipe__description">{recipe.description}</div>
         </div>
       )}
