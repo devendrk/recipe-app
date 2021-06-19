@@ -1,0 +1,9 @@
+@import "../../scss/config";
+
+.alert {
+  padding: 20px;
+  background-color: $lightGreen;
+  color: white;
+  font-size: $t-medium;
+  border-radius: $r-medium;
+}

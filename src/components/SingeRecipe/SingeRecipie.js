@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -13,14 +13,15 @@ import Section from "../Section/Section";
 import Button from "../Button/Button";
 
 import "./SingleRecipe.scss";
+import ALert from "../Alert/Alert";
 
 const SingleRecipe = () => {
   const dispatch = useDispatch();
-  const recipes = useSelector((state) => state.recipes.recipes);
+  const recipes = useSelector((state) => state.recipes);
   const id = useParams().id;
   const history = useHistory();
 
-  const recipe = recipes.find((r) => r._id === id);
+  const recipe = recipes.recipes.find((r) => r._id === id);
 
   const handleClick = () => {
     dispatch(setActiveRecipe(recipe));
@@ -33,6 +34,7 @@ const SingleRecipe = () => {
   };
   return (
     <Section>
+      {recipes.message ? <ALert message={recipes.message} /> : null}
       <div className="edit_btn">
         <Button text="Edit" variant="primary" handleClick={handleClick} />
         <Button text="Delete" variant="danger" handleClick={handleDelete} />
