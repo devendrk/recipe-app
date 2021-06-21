@@ -1,7 +1,5 @@
 # Recipe-app
 
-## live Demo: http://secret-sands-84459.herokuapp.com/
-
 Fullstack CRUD web app to view recipes added by user.As a user One can Add, edit and remove the recipe using action butons.
 
 Quick start
